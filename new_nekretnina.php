@@ -15,16 +15,16 @@ include './db.php';
 
 <body>
     <div class="container">
-        <form class="col-4 offset-4" action="./pages/add_nekretnina.php" method="POST" enctype="multipart/form-data">
+        <form class="col-8 offset-2" action="./pages/add_nekretnina.php" method="POST" enctype="multipart/form-data">
 
-            <input class="form-control" type="text" name="cijena" placeholder="Unesite cijenu">
-            <input class="form-control" type="text" name="povrsina" placeholder="Unesite povrsinu">
-            <input class="form-control" type="text" name="status" placeholder="Status">
-            <input class="form-control" type="text" name="opis" placeholder="Opis">
-            <input class="form-control" type="date" name="datumIzgradnje" placeholder="Godina izgradnje">
-            <input class="form-control" type="date" name="datumProdaje" placeholder="Datum prodaje">
+            <input class="form-control mb-2 mt-5" type="text" name="cijena" placeholder="Unesite cijenu">
+            <input class="form-control mb-2" type="text" name="povrsina" placeholder="Unesite povrsinu">
+            <input class="form-control mb-2" type="text" name="status" placeholder="Status">
+            <input class="form-control mb-2" type="text" name="opis" placeholder="Opis">
+            <input class="form-control mb-2" type="date" name="datumIzgradnje" placeholder="Godina izgradnje">
+            <input class="form-control mb-2" type="date" name="datumProdaje" placeholder="Datum prodaje">
 
-            <select class="form-control" name="idGrad">
+            <select class="form-control mb-2" name="idGrad">
                 <option>Izaberite grad</option>
                 <?php
                 $stmt = $pdo->prepare("SELECT * FROM grad");
@@ -36,7 +36,7 @@ include './db.php';
                 }
                 ?>
             </select>
-            <select class="form-control" name="idTipNekretnine">
+            <select class="form-control mb-2" name="idTipNekretnine">
                 <option>Izaberite tip nekretnine</option>
                 <?php
                 $stmt = $pdo->prepare("SELECT * FROM tip_nekretnine");
@@ -48,7 +48,7 @@ include './db.php';
                 }
                 ?>
             </select>
-            <select class="form-control" name="idTipOglasa">
+            <select class="form-control mb-2" name="idTipOglasa">
                 <option>Izaberite tip oglasa</option>
                 <?php
                 $stmt = $pdo->prepare("SELECT * FROM tip_oglasa");
@@ -60,7 +60,7 @@ include './db.php';
                 }
                 ?>
             </select>
-            <input class="form-control" type="file" name="photos[]" multiple>
+            <input class="form-control mb-2" type="file" name="photos[]" multiple>
             <button class="form-control btn btn-primary" type="submit" value="UPLOAD">Submit</button>
         </form>
     </div>

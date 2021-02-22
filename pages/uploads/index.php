@@ -4,6 +4,7 @@ include './db.php';
 $stmt = $pdo->prepare("SELECT * FROM fotografije RIGHT JOIN nekretnina ON nekretnina.id_nekretnina = fotografije.id_nekretnina GROUP BY fotografije.id_nekretnina");
 $stmt->execute();
 echo     "<div class='container'><table class='table table-responsive-lg'>
+<th>ID Nekretnine</th>
 <th>Cijena</th>
 <th>Povrsina</th>
 <th>Status</th>
@@ -19,6 +20,7 @@ echo     "<div class='container'><table class='table table-responsive-lg'>
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     echo "
     <tr>
+        <td>" . $result['id_nekretnina'] . "</td>
         <td>" . $result['cijena'] . "€</td>
         <td>" . $result['povrsina'] . "</td>
         <td>" . $result['stats'] . "</td>
