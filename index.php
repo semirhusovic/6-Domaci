@@ -30,7 +30,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <td>" . $result['id_grad'] . "</td>
         <td>" . $result['id_tip_nekretnine'] . "</td>
         <td>" . $result['id_tip_oglasa'] . "</td>
-        <td><img src='" . $result['slika'] . "'></td>
+        <td><img alt='slika' src='pages/" . $result['slika'] . "'></td>
         <td><i class='fas fa-edit'></i> <i class='fas fa-trash-alt'></i></td>
     </tr>
     </div>";
@@ -60,12 +60,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             color: red;
         }
     </style>
+
+    <div class="container text-center mb-3">
+        <a class="btn btn-primary" href="./new_city.php">Dodaj grad</a>
+        <a class="btn btn-primary" href="./new_nekretnina.php">Dodaj nekretninu</a>
+        <a class="btn btn-primary" href="./new_type.php">Dodaj tip nekretnine</a>
+    </div>
 </body>
-<div class="container text-center mb-3">
-    <a class="btn btn-primary" href="./new_city.php">Dodaj grad</a>
-    <a class="btn btn-primary" href="./new_nekretnina.php">Dodaj nekretninu</a>
-    <a class="btn btn-primary" href="./new_type.php">Dodaj tip nekretnine</a>
-</div>
 
 <!-- <a href="./show_apartments.php">Sve nekretnine</a> -->
 

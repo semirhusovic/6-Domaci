@@ -13,9 +13,9 @@ $idTipNekretnine = $_POST["idTipNekretnine"];
 $idTipOglasa = $_POST["idTipOglasa"];
 // var_dump($idGrad);
 
-// echo '<pre>';
-// var_dump($_FILES);
-// echo '<pre>';
+echo '<pre>';
+var_dump($_FILES);
+echo '<pre>';
 
 $stmt = $pdo->prepare("INSERT INTO `nekretnina`(`cijena`, `povrsina`, `stats`, `opis`, `godina_izgradnje`, `datum_prodaje`, `id_grad`, `id_tip_nekretnine`, `id_tip_oglasa`) VALUES (:ci,:po,:st,:op,:datI,:datP,:idG,:idTN,:idTO)");
 $stmt->bindParam(':ci', $cijena, PDO::PARAM_STR);
@@ -50,12 +50,14 @@ if (isset($_FILES['photos'])) {
             $uploadDestination = "uploads";
             $path = $uploadDestination . '/' . uniqid() . ".png";
             if (is_dir($uploadDestination) == false) {
+                echo "Napravljen novi folder";
                 mkdir($uploadDestination, 0700); //* Pravljenje novog foldera ukoliko on ne postoji
             }
             if (is_file($uploadDestination . '/' . $file_name) == false) {
                 move_uploaded_file($tmp_name, $path);
+                echo "prebacena slika";
             }
-            // echo $path . "<br>";
+            echo $path . "<br>";
             $stmt2->bindParam(':slika', $path, PDO::PARAM_STR);
             if (!$stmt2->execute()) {
                 var_dump($stmt2->errorInfo());
