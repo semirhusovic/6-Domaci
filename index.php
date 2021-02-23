@@ -10,7 +10,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $curr_type = $result['id_tip_nekretnine'];
     $curr_ad = $result['id_tip_oglasa'];
     $status = $result['stats'] == 0 ? "Na prodaju" : "Prodato";
-    echo "<div class='card'>
+    echo "<a href='single.php?id=" . $result['id_nekretnina'] . "'>
+    <div class='card'>
              <img class='card-img-top' src='pages/" . $result['slika'] . "' alt='Card image cap'>
              <div class='card-body'>
                  <h5 class='card-title'>" . $result['naziv'] . "</h5>
@@ -25,7 +26,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     </div>
                 </p>
              </div>
-         </div>";
+    </div>
+    </a>";
 }
 echo "    </div></div>"
 ?>
@@ -34,7 +36,7 @@ echo "    </div></div>"
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 
 </head>
