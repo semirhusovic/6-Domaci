@@ -2,9 +2,9 @@ body {
   padding-top: 50px;
 }
 
-.fa-trash-alt {
+/* .fa-trash-alt {
   color: red;
-}
+} */
 
 .opis {
   display: -webkit-box;
@@ -22,7 +22,6 @@ body {
 .card-deck .card {
   margin: 0 0 1rem;
 }
-
 @media (min-width: 576px) and (max-width: 767.98px) {
   .card-deck .card {
     -ms-flex: 0 0 48.7%;
