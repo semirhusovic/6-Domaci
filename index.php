@@ -28,59 +28,12 @@ echo "    </div></div>"
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
 
 
 </head>
 
 <body>
-    <style>
-        body {
-            padding-top: 50px;
-        }
-
-        .fa-trash-alt {
-            color: red;
-        }
-
-        .opis {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .card-deck {
-            margin: 0 -15px;
-            justify-content: space-between;
-        }
-
-        .card-deck .card {
-            margin: 0 0 1rem;
-        }
-
-        @media (min-width: 576px) and (max-width: 767.98px) {
-            .card-deck .card {
-                -ms-flex: 0 0 48.7%;
-                flex: 0 0 48.7%;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 991.98px) {
-            .card-deck .card {
-                -ms-flex: 0 0 32%;
-                flex: 0 0 32%;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .card-deck .card {
-                -ms-flex: 0 0 24%;
-                flex: 0 0 24%;
-            }
-        }
-    </style>
-
     <div class="container text-center mb-3">
         <a class="btn btn-primary" href="./new_city.php">Dodaj grad</a>
         <a class="btn btn-primary" href="./new_nekretnina.php">Dodaj nekretninu</a>
