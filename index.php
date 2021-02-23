@@ -18,7 +18,12 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                  <p class='card-text'><small class='text-muted'>Datum izgradnje: " . $result['godina_izgradnje'] . "</small></p>
                  <p class='card-text'>Cijena: <span class='badge badge-info'>" . $result['cijena'] . "€</span> </p>
                  <p class='card-text'>Povrsina: <span class='badge badge-primary'>" . $result['povrsina'] . "m²</span> </p>
-                 <p class='card-text text-center'><div class='row'><i class='fas fa-edit btn btn-primary col-md-6'></i> <i class='fas fa-trash-alt btn btn-danger col-md-6'></i></div></p>
+                 <p class='card-text text-center'>
+                    <div class='row'>
+                        <a class='btn btn-primary col-md-6' href='#/edit.php?id=" . $result['id_nekretnina'] . "'><i class='fas fa-edit'></i> </a>
+                        <a class='btn btn-danger col-md-6' href='delete.php?id=" . $result['id_nekretnina'] . "'><i class='fas fa-trash-alt'></i></a>
+                    </div>
+                </p>
              </div>
          </div>";
 }
