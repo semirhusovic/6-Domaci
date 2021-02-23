@@ -16,7 +16,6 @@ echo     "<div class='container'><table class='table table-responsive-lg'>
 <th>Tip nekretnine</th>
 <th>Tip oglasa</th>
 <th>Slika</th>
-<th>Akcije</th>
 ";
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $curr_city = $result['id_grad'];
@@ -35,7 +34,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <td>" . getByID($pdo, "tip_nekretnine", "tip_nekretnine", "id_tip_nekretnine", $curr_type) . "</td>
         <td>" . getByID($pdo, "tip_oglasa", "tip_oglasa", "id_tip_oglasa", $curr_ad) . "</td>
         <td><img alt='slika' src='pages/" . $result['slika'] . "'></td>
-        <td><i class='fas fa-edit'></i> <i class='fas fa-trash-alt'></i></td>
     </tr>
     </div>";
 }

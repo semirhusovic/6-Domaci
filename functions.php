@@ -33,3 +33,13 @@ function deleteByID($pdo, $tableName, $fieldName, $id)
         echo $stmt->errorCode();
     }
 }
+
+function getAllImages($pdo, $id)
+{
+    $stmt = $pdo->prepare("SELECT slika FROM fotografije WHERE id_nekretnina=$id");
+    if (!$stmt->execute()) {
+        echo $stmt->errorCode();
+    } else {
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
