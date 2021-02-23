@@ -2,6 +2,7 @@
 
 include '../db.php';
 
+$naziv = $_POST["naziv"];
 $cijena = $_POST["cijena"];
 $povrsina = $_POST["povrsina"];
 $status = $_POST["status"];
@@ -17,7 +18,8 @@ echo '<pre>';
 var_dump($_FILES);
 echo '<pre>';
 
-$stmt = $pdo->prepare("INSERT INTO `nekretnina`(`cijena`, `povrsina`, `stats`, `opis`, `godina_izgradnje`, `datum_prodaje`, `id_grad`, `id_tip_nekretnine`, `id_tip_oglasa`) VALUES (:ci,:po,:st,:op,:datI,:datP,:idG,:idTN,:idTO)");
+$stmt = $pdo->prepare("INSERT INTO `nekretnina`(`naziv`,`cijena`, `povrsina`, `stats`, `opis`, `godina_izgradnje`, `datum_prodaje`, `id_grad`, `id_tip_nekretnine`, `id_tip_oglasa`) VALUES (:nz,:ci,:po,:st,:op,:datI,:datP,:idG,:idTN,:idTO)");
+$stmt->bindParam(':nz', $naziv, PDO::PARAM_STR);
 $stmt->bindParam(':ci', $cijena, PDO::PARAM_STR);
 $stmt->bindParam(':po', $povrsina, PDO::PARAM_STR);
 $stmt->bindParam(':st', $status, PDO::PARAM_STR);

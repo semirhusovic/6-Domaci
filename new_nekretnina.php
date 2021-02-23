@@ -17,10 +17,11 @@ include './db.php';
     <div class="container">
         <form class="col-8 offset-2" action="./pages/add_nekretnina.php" method="POST" enctype="multipart/form-data">
 
-            <input class="form-control mb-2 mt-5" type="text" name="cijena" placeholder="Unesite cijenu">
+            <input class="form-control mb-2 mt-5" type="text" name="naziv" placeholder="Unesite naziv">
+            <input class="form-control mb-2" type="text" name="cijena" placeholder="Unesite cijenu">
             <input class="form-control mb-2" type="text" name="povrsina" placeholder="Unesite povrsinu">
             <input class="form-control mb-2" type="text" name="status" placeholder="Status">
-            <input class="form-control mb-2" type="text" name="opis" placeholder="Opis">
+            <textarea class="form-control mb-2" type="text" rows=5 name="opis" placeholder="Opis"></textarea>
             <input class="form-control mb-2" type="date" name="datumIzgradnje" placeholder="Godina izgradnje">
             <input class="form-control mb-2" type="date" name="datumProdaje" placeholder="Datum prodaje">
 
