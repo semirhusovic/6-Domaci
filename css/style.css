@@ -1,21 +1,29 @@
 body {
   padding-top: 50px;
 }
+a {
+  cursor: pointer;
+}
 a:link {
   /* color: black; */
   text-decoration: none;
-  cursor: auto;
+  cursor: pointer;
 }
 a:link:active {
   /* color: black; */
+  cursor: pointer;
 }
 a:visited {
   /* color: black; */
   text-decoration: none;
-  cursor: auto;
+  cursor: pointer;
 }
 a:visited:active {
   color: black;
+  cursor: pointer;
+}
+#naziv {
+  cursor: pointer;
 }
 /* .fa-trash-alt {
   color: red;

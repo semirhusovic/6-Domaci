@@ -6,9 +6,6 @@ $id = $_REQUEST['id'];
 $stmt = $pdo->prepare("SELECT * FROM nekretnina WHERE id_nekretnina = $id");
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-$curr_city = $result['id_grad'];
-$curr_type = $result['id_tip_nekretnine'];
-$curr_ad = $result['id_tip_oglasa'];
 $status = $result['stats'] == 0 ? "Na prodaju" : "Prodato";
 
 ?>
@@ -21,7 +18,6 @@ $status = $result['stats'] == 0 ? "Na prodaju" : "Prodato";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Single view page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/style-slider.css">
@@ -85,15 +81,15 @@ $status = $result['stats'] == 0 ? "Na prodaju" : "Prodato";
             </tr>
             <tr>
                 <th>Grad</th>
-                <td><?= getByID($pdo, "grad", "grad", "id_grad", $curr_city) ?></td>
+                <td><?= getByID($pdo, "grad", "grad", "id_grad", $result['id_grad']) ?></td>
             </tr>
             <tr>
                 <th>Tip nekretnine</th>
-                <td><?= getByID($pdo, "tip_nekretnine", "tip_nekretnine", "id_tip_nekretnine", $curr_type) ?></td>
+                <td><?= getByID($pdo, "tip_nekretnine", "tip_nekretnine", "id_tip_nekretnine", $result['id_tip_nekretnine']) ?></td>
             </tr>
             <tr>
                 <th>Tip oglasa</th>
-                <td><?= getByID($pdo, "tip_oglasa", "tip_oglasa", "id_tip_oglasa", $curr_ad) ?></td>
+                <td><?= getByID($pdo, "tip_oglasa", "tip_oglasa", "id_tip_oglasa", $result['id_tip_oglasa']) ?></td>
             </tr>
         </table>
     </div>

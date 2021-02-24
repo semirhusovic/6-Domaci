@@ -20,7 +20,9 @@ include './db.php';
             <input class="form-control mb-2 mt-5" type="text" name="naziv" placeholder="Unesite naziv">
             <input class="form-control mb-2" type="text" name="cijena" placeholder="Unesite cijenu">
             <input class="form-control mb-2" type="text" name="povrsina" placeholder="Unesite povrsinu">
-            <input class="form-control mb-2" type="text" name="status" placeholder="Status">
+            <div class="form-check form-control mb-2">
+                <input class="form-check-input" type="checkbox" name="status" value="1" placeholder="Status"> <label class="form-check-label" for="status">Prodato?</label>
+            </div>
             <textarea class="form-control mb-2" type="text" rows=5 name="opis" placeholder="Opis"></textarea>
             <input class="form-control mb-2" type="date" name="datumIzgradnje" placeholder="Godina izgradnje">
             <input class="form-control mb-2" type="date" name="datumProdaje" placeholder="Datum prodaje">

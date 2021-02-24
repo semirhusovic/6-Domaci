@@ -5,7 +5,7 @@ include '../db.php';
 $naziv = $_POST["naziv"];
 $cijena = $_POST["cijena"];
 $povrsina = $_POST["povrsina"];
-$status = $_POST["status"];
+$status = isset($_POST['status']) ? 1 : 0;
 $opis = $_POST["opis"];
 $datumIzgradnje = $_POST["datumIzgradnje"];
 $datumProdaje = $_POST["datumProdaje"];
