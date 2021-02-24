@@ -43,3 +43,22 @@ function getAllImages($pdo, $id)
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
+function getByID2($pdo, $table, $wfield, $uslov, $value)
+{
+    $stmt = $pdo->prepare("SELECT $wfield FROM $table WHERE $uslov = $value ");
+    $stmt->execute();
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        return $result;
+    }
+}
+
+function getAllData($pdo, $table)
+{
+    $stmt = $pdo->prepare("SELECT * FROM $table");
+    if (!$stmt->execute()) {
+        echo $stmt->errorCode();
+    } else {
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
