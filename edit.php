@@ -21,9 +21,9 @@ $result2 = getByID2($pdo, 'nekretnina', '*', 'id_nekretnina', $id);
 
 <body>
     <div class="container">
-        <form class="col-8 offset-2" action="./pages/add_nekretnina.php" method="POST" enctype="multipart/form-data">
+        <form class="col-8 offset-2" action='./pages/update_nekretnina.php?id=<?php echo "$id"; ?>' method="POST" enctype="multipart/form-data">
 
-            <input class='form-control mb-2 mt-5' type='text' name='naziv' placeholder='Unesite naziv' value="<?= $result2['naziv'] ?>">
+            <input class="form-control mb-2 mt-5" type="text" name="naziv" placeholder='Unesite naziv' value="<?= $result2['naziv'] ?>">
             <input class="form-control mb-2" type="text" name="cijena" placeholder="Unesite cijenu" value="<?= $result2['cijena'] ?>">
             <input class="form-control mb-2" type="text" name="povrsina" placeholder="Unesite povrsinu" value="<?= $result2['povrsina'] ?>">
             <div class="form-check form-control mb-2">
@@ -74,7 +74,7 @@ $result2 = getByID2($pdo, 'nekretnina', '*', 'id_nekretnina', $id);
                 }
                 ?>
             </select>
-            <input class="form-control mb-2" type="file" name="photos[]" multiple>
+            <!-- <input class="form-control mb-2" type="file" name="photos[]" multiple> -->
             <button class="form-control btn btn-primary" type="submit" value="UPLOAD">Submit</button>
         </form>
     </div>
