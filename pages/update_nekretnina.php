@@ -29,8 +29,9 @@ $stmt->bindParam(':idNK', $id);
 if (!$stmt->execute()) {
     echo $stmt->errorCode();
 } else {
-    echo "Edit uspjesan!";
+    // echo "Edit uspjesan!";
     $last_id = $pdo->lastInsertId();
+    header("Location: ../index.php");
 }
 
 
