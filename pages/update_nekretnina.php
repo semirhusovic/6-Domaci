@@ -14,7 +14,7 @@ $idTipNekretnine = $_POST["idTipNekretnine"];
 $idTipOglasa = $_POST["idTipOglasa"];
 
 $stmt = $pdo->prepare("UPDATE `nekretnina`
-SET `naziv` = :nz , `cijena`= :ci , `povrsina` = :po , `stats`= :st ,`opis`= :op,`godina_izgradnje` = :datI, `datum_prodaje`= :datP ,`id_grad`= :idG ,`id_tip_nekretnine`= :idTN ,`id_tip_oglasa`= :idTO, WHERE `id_nekretnine`= :idNK");
+SET `naziv` = :nz , `cijena`= :ci , `povrsina` = :po , `stats`= :st ,`opis`= :op,`godina_izgradnje` = :datI, `datum_prodaje`= :datP ,`id_grad`= :idG ,`id_tip_nekretnine`= :idTN ,`id_tip_oglasa`= :idTO WHERE `id_nekretnina`= :idNK");
 $stmt->bindParam(':nz', $naziv);
 $stmt->bindParam(':ci', $cijena);
 $stmt->bindParam(':po', $povrsina);
@@ -29,7 +29,7 @@ $stmt->bindParam(':idNK', $id);
 if (!$stmt->execute()) {
     echo $stmt->errorCode();
 } else {
-    echo "New entry added!";
+    echo "Edit uspjesan!";
     $last_id = $pdo->lastInsertId();
 }
 
