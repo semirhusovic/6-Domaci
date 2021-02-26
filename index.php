@@ -1,12 +1,39 @@
 <?php
 include './db.php';
 include './functions.php';
-$cOd = isset($_POST['cOd']) ? $_POST['cOd'] : 0;
-$cDo = isset($_POST["cDo"]) ? $_POST["cDo"] : 99999999;
+if ((isset($_POST['cOd'])) && $_POST['cOd'] != '') {
+    $cOd = intval($_POST['cOd']);
+} else {
+    $cOd = intval(0);
+}
+if ((isset($_POST['cDo'])) && $_POST['cDo'] != '') {
+    $cDo = intval($_POST['cDo']);
+} else {
+    $cDo = intval(9999999999);
+}
+if ((isset($_POST['pOd'])) && $_POST['pOd'] != '') {
+    $pOd = intval($_POST['pOd']);
+} else {
+    $pOd = intval(0);
+}
+if ((isset($_POST['pDo'])) && $_POST['pDo'] != '') {
+    $pDo = intval($_POST['pDo']);
+} else {
+    $pDo = intval(9999999999);
+}
+$idGrad = intval($_POST["gradId"]);
+$idTip = intval($_POST["tipId"]);
 
-$stmt = $pdo->prepare("SELECT * FROM fotografije RIGHT JOIN nekretnina ON nekretnina.id_nekretnina = fotografije.id_nekretnina GROUP BY fotografije.id_nekretnina");
+$stmt = $pdo->prepare("SELECT * FROM fotografije RIGHT JOIN nekretnina ON nekretnina.id_nekretnina = fotografije.id_nekretnina WHERE nekretnina.cijena BETWEEN :cOd AND :cDo AND nekretnina.povrsina BETWEEN :pOd AND :pDo AND nekretnina.id_grad = :idG AND nekretnina.id_tip_oglasa = :iTn GROUP BY fotografije.id_nekretnina");
+$stmt->bindParam(':cOd', $cOd);
+$stmt->bindParam(':cDo', $cDo);
+$stmt->bindParam(':pOd', $pOd);
+$stmt->bindParam(':pDo', $pDo);
+$stmt->bindParam(':idG', $idGrad);
+$stmt->bindParam(':iTn', $idTip);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($results);
 ?>
 <html>
 
@@ -45,11 +72,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <select name='tipId' class="form-control">" .
                     <?php $tipovi_og = getAllData($pdo, 'tip_oglasa');
                     foreach ($tipovi_og as $tip_og) {
-                        if ($result2['id_tip_oglasa'] == $tip_og['id_tip_oglasa']) {
-                            echo "<option value='" . $tip_og['id_tip_oglasa'] . "'selected>" . $tip_og['tip_oglasa'] . "</option>";
-                        } else {
-                            echo "<option value='" . $tip_og['id_tip_oglasa'] . "'>" . $tip_og['tip_oglasa'] . "</option>";
-                        }
+                        echo "<option value='" . $tip_og['id_tip_oglasa'] . "'>" . $tip_og['tip_oglasa'] . "</option>";
                     } ?>
                 </select>
             </div>
