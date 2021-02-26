@@ -65,3 +65,11 @@ a:visited:active {
     flex: 0 0 24%;
   }
 }
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col {
+  min-width: 200px;
+}
