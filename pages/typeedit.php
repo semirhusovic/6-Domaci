@@ -2,7 +2,7 @@
 include '../db.php';
 include '../functions.php';
 $id = $_REQUEST['id'];
-$result = getByID2($pdo, 'grad', '*', 'id_grad', $id);
+$result = getByID2($pdo, 'tip_nekretnine', '*', 'id_tip_nekretnine', $id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +17,9 @@ $result = getByID2($pdo, 'grad', '*', 'id_grad', $id);
 
 <body>
     <div class="container">
-        <form action="cityupdate.php?id=<?= $id ?>" method="POST">
+        <form action="typeupdate.php?id=<?= $id ?>" method="POST">
 
-            <input type="text" name="city" value="<?= $result['grad'] ?>" placeholder="Unesite grad">
+            <input type="text" name="tipNk" value="<?= $result['tip_nekretnine'] ?>" placeholder="Unesite grad">
             <button type="submit">Submit</button>
         </form>
     </div>

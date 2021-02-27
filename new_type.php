@@ -17,7 +17,7 @@ $results = getAllData($pdo, 'tip_nekretnine');
 </head>
 
 <body>
-    <form action="./pages/add_nekretnina_type.php" method="POST">
+    <form action="pages/add_nekretnina_type.php" method="POST">
 
         <input type="text" name="tip" placeholder="Unesite tip">
         <button type="submit">Submit</button>

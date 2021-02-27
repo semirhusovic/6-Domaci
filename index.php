@@ -55,16 +55,10 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <input type='number' class='form-control mb-2' value="<?= $cOd ?>" placeholder='Cijena od' name='cOd'>
                 <input type='number' class='form-control' value="<?= $cDo ?>" placeholder='Cijena do' name='cDo'>
             </div>
-            <!-- <div class='col'>
-                <input type='number' class='form-control' value="<?= $cDo ?>" placeholder='Cijena do' name='cDo'>
-            </div> -->
             <div class='col'>
                 <input type='number' class='form-control mb-2' value="<?= $pOd ?>" placeholder='Povrsina od' name='pOd'>
                 <input type='number' class='form-control' value="<?= $pDo ?>" placeholder='Povrsina do' name='pDo'>
             </div>
-            <!-- <div class='col'>
-                <input type='number' class='form-control' value="<?= $pDo ?>" placeholder='Povrsina do' name='pDo'>
-            </div> -->
             <div class='col'>
                 <select name='gradId' class="form-control">
                     <option value='0'>--Grad--</option>" .

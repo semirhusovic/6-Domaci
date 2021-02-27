@@ -2,15 +2,13 @@
 
 include '../db.php';
 $id = intval($_REQUEST['id']);
-var_dump($id);
-$grad = $_POST['city'];
-var_dump($grad);
-$sql = "UPDATE grad
-SET grad= '$grad'
-WHERE id_grad = $id ";
+$tipNk = $_POST['tipNk'];
+$sql = "UPDATE tip_nekretnine
+SET tip_nekretnine= '$tipNk'
+WHERE id_tip_nekretnine = $id ";
 $stmt = $pdo->prepare($sql);
 if (!$stmt->execute()) {
     var_dump($stmt->errorInfo());
 } else {
-    header("Location: ../new_city.php");
+    header("Location: ../new_type.php");
 }
