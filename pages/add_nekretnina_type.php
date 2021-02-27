@@ -8,5 +8,5 @@ $stmt->bindParam(':tip', $type, PDO::PARAM_STR);
 if (!$stmt->execute()) {
     echo $stmt->errorCode();
 } else {
-    echo "Dodat novi tip nekretnine!";
+    header("Location: ../new_city.php");
 }

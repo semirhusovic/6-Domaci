@@ -32,8 +32,8 @@ $stmt->bindParam(':idTO', $idTipOglasa, PDO::PARAM_INT);
 if (!$stmt->execute()) {
     echo $stmt->errorCode();
 } else {
-    echo "New entry added!";
     $last_id = $pdo->lastInsertId();
+    echo "Nekretnina uspjesno dodata";
 }
 
 

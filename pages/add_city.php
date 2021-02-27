@@ -8,5 +8,5 @@ $stmt->bindParam(':gr', $city, PDO::PARAM_STR);
 if (!$stmt->execute()) {
     echo $stmt->errorCode();
 } else {
-    echo "Novi grad dodat!";
+    header("Location: ../new_city.php");
 }
