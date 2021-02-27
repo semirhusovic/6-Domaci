@@ -1,36 +1,36 @@
 <?php
 include './db.php';
 include './functions.php';
+$query = "SELECT * FROM fotografije RIGHT JOIN nekretnina ON nekretnina.id_nekretnina = fotografije.id_nekretnina WHERE 1=1";
+$dodatni_uslovi = "";
 if ((isset($_POST['cOd'])) && $_POST['cOd'] != '') {
     $cOd = intval($_POST['cOd']);
-} else {
-    $cOd = intval(0);
+    $dodatni_uslovi .= " AND nekretnina.cijena > $cOd ";
 }
 if ((isset($_POST['cDo'])) && $_POST['cDo'] != '') {
     $cDo = intval($_POST['cDo']);
-} else {
-    $cDo = intval(9999999999);
+    $dodatni_uslovi .= " AND nekretnina.cijena < $cDo ";
 }
 if ((isset($_POST['pOd'])) && $_POST['pOd'] != '') {
     $pOd = intval($_POST['pOd']);
-} else {
-    $pOd = intval(0);
+    $dodatni_uslovi .= " AND nekretnina.povrsina > $pOd ";
 }
 if ((isset($_POST['pDo'])) && $_POST['pDo'] != '') {
     $pDo = intval($_POST['pDo']);
-} else {
-    $pDo = intval(9999999999);
+    $dodatni_uslovi .= " AND nekretnina.povrsina < $pDo ";
 }
-$idGrad = intval($_POST["gradId"]);
-$idTip = intval($_POST["tipId"]);
 
-$stmt = $pdo->prepare("SELECT * FROM fotografije RIGHT JOIN nekretnina ON nekretnina.id_nekretnina = fotografije.id_nekretnina WHERE nekretnina.cijena BETWEEN :cOd AND :cDo AND nekretnina.povrsina BETWEEN :pOd AND :pDo AND nekretnina.id_grad = :idG AND nekretnina.id_tip_oglasa = :iTn GROUP BY fotografije.id_nekretnina");
-$stmt->bindParam(':cOd', $cOd);
-$stmt->bindParam(':cDo', $cDo);
-$stmt->bindParam(':pOd', $pOd);
-$stmt->bindParam(':pDo', $pDo);
-$stmt->bindParam(':idG', $idGrad);
-$stmt->bindParam(':iTn', $idTip);
+if ((isset($_POST['gradId'])) && $_POST['gradId'] != '0') {
+    $idGrad = intval($_POST['gradId']);
+    $dodatni_uslovi .= " AND nekretnina.id_grad = $idGrad";
+}
+
+if ((isset($_POST['tipId'])) && $_POST['tipId'] != '0') {
+    $idTip = intval($_POST['tipId']);
+    $dodatni_uslovi .= " AND nekretnina.id_tip_oglasa = $idTip";
+}
+
+$stmt = $pdo->prepare($query . $dodatni_uslovi . " GROUP BY fotografije.id_nekretnina");
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($results);
@@ -46,33 +46,43 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <form class='col-8 offset-2 search-form' action='index.php' method='POST'>
+    <form class='col-8 offset-2 search-form' action='index2.php' method='POST'>
         <div class='form-row'>
             <div class='col'>
-                <input type='number' class='form-control' placeholder='Cijena od' name='cOd'>
+                <input type='number' class='form-control' value="<?= $cOd ?>" placeholder='Cijena od' name='cOd'>
             </div>
             <div class='col'>
-                <input type='number' class='form-control' placeholder='Cijena do' name='cDo'>
+                <input type='number' class='form-control' value="<?= $cDo ?>" placeholder='Cijena do' name='cDo'>
             </div>
             <div class='col'>
-                <input type='number' class='form-control' placeholder='Povrsina od' name='pOd'>
+                <input type='number' class='form-control' value="<?= $pOd ?>" placeholder='Povrsina od' name='pOd'>
             </div>
             <div class='col'>
-                <input type='number' class='form-control' placeholder='Povrsina do' name='pDo'>
+                <input type='number' class='form-control' value="<?= $pDo ?>" placeholder='Povrsina do' name='pDo'>
             </div>
             <div class='col'>
-                <select name='gradId' class="form-control">" .
+                <select name='gradId' class="form-control">
+                    <option value='0'>--Grad--</option>" .
                     <?php $gradovi = getAllData($pdo, 'grad');
                     foreach ($gradovi as $grad) {
-                        echo "<option value='" . $grad['id_grad'] . "'>" . $grad['grad'] . "</option>";
+                        if ($grad['id_grad'] == $idGrad) {
+                            echo "<option selected value='" . $grad['id_grad'] . "'>" . $grad['grad'] . "</option>";
+                        } else {
+                            echo "<option value='" . $grad['id_grad'] . "'>" . $grad['grad'] . "</option>";
+                        }
                     } ?>
                 </select>
             </div>
             <div class='col'>
-                <select name='tipId' class="form-control">" .
+                <select name='tipId' class="form-control">"
+                    <option value='0'>--Tip--</option> .
                     <?php $tipovi_og = getAllData($pdo, 'tip_oglasa');
                     foreach ($tipovi_og as $tip_og) {
-                        echo "<option value='" . $tip_og['id_tip_oglasa'] . "'>" . $tip_og['tip_oglasa'] . "</option>";
+                        if ($tip_og == $idTip) {
+                            echo "<option selected value='" . $tip_og['id_tip_oglasa'] . "'>" . $tip_og['tip_oglasa'] . "</option>";
+                        } else {
+                            echo "<option value='" . $tip_og['id_tip_oglasa'] . "'>" . $tip_og['tip_oglasa'] . "</option>";
+                        }
                     } ?>
                 </select>
             </div>
