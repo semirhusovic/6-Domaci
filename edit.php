@@ -74,7 +74,7 @@ $result2 = getByID2($pdo, 'nekretnina', '*', 'id_nekretnina', $id);
                 }
                 ?>
             </select>
-            <!-- <input class="form-control mb-2" type="file" name="photos[]" multiple> -->
+            <input class="form-control mb-2" type="file" name="photos[]" multiple>
             <button class="form-control btn btn-primary" type="submit" value="UPLOAD">Submit</button>
         </form>
     </div>
