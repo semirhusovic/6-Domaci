@@ -9,7 +9,7 @@ if ((isset($_POST['cOd'])) && $_POST['cOd'] != '') {
 }
 if ((isset($_POST['cDo'])) && $_POST['cDo'] != '') {
     $cDo = intval($_POST['cDo']);
-    $dodatni_uslovi .= " AND nekretnina.cijena < $cDo ";
+    $dodatni_uslovi .= " AND nekretnina.cijena <= $cDo ";
 }
 if ((isset($_POST['pOd'])) && $_POST['pOd'] != '') {
     $pOd = intval($_POST['pOd']);
@@ -29,11 +29,14 @@ if ((isset($_POST['tipId'])) && $_POST['tipId'] != '0') {
     $idTip = intval($_POST['tipId']);
     $dodatni_uslovi .= " AND nekretnina.id_tip_oglasa = $idTip";
 }
-
+if ((isset($_POST['idNk'])) && $_POST['idNk'] != '0') {
+    $idNk = intval($_POST['idNk']);
+    $dodatni_uslovi .= " AND nekretnina.id_tip_nekretnine = $idNk";
+}
 $stmt = $pdo->prepare($query . $dodatni_uslovi . " GROUP BY fotografije.id_nekretnina");
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// var_dump($results);
+
 ?>
 <html>
 
@@ -46,20 +49,22 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <form class='col-8 offset-2 search-form' action='index2.php' method='POST'>
+    <form class='col-8 offset-2 search-form' action='index.php' method='POST'>
         <div class='form-row'>
             <div class='col'>
-                <input type='number' class='form-control' value="<?= $cOd ?>" placeholder='Cijena od' name='cOd'>
-            </div>
-            <div class='col'>
+                <input type='number' class='form-control mb-2' value="<?= $cOd ?>" placeholder='Cijena od' name='cOd'>
                 <input type='number' class='form-control' value="<?= $cDo ?>" placeholder='Cijena do' name='cDo'>
             </div>
+            <!-- <div class='col'>
+                <input type='number' class='form-control' value="<?= $cDo ?>" placeholder='Cijena do' name='cDo'>
+            </div> -->
             <div class='col'>
-                <input type='number' class='form-control' value="<?= $pOd ?>" placeholder='Povrsina od' name='pOd'>
-            </div>
-            <div class='col'>
+                <input type='number' class='form-control mb-2' value="<?= $pOd ?>" placeholder='Povrsina od' name='pOd'>
                 <input type='number' class='form-control' value="<?= $pDo ?>" placeholder='Povrsina do' name='pDo'>
             </div>
+            <!-- <div class='col'>
+                <input type='number' class='form-control' value="<?= $pDo ?>" placeholder='Povrsina do' name='pDo'>
+            </div> -->
             <div class='col'>
                 <select name='gradId' class="form-control">
                     <option value='0'>--Grad--</option>" .
@@ -78,10 +83,23 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <option value='0'>--Tip--</option> .
                     <?php $tipovi_og = getAllData($pdo, 'tip_oglasa');
                     foreach ($tipovi_og as $tip_og) {
-                        if ($tip_og == $idTip) {
+                        if ($tip_og['id_tip_oglasa'] == $idTip) {
                             echo "<option selected value='" . $tip_og['id_tip_oglasa'] . "'>" . $tip_og['tip_oglasa'] . "</option>";
                         } else {
                             echo "<option value='" . $tip_og['id_tip_oglasa'] . "'>" . $tip_og['tip_oglasa'] . "</option>";
+                        }
+                    } ?>
+                </select>
+            </div>
+            <div class='col'>
+                <select name='idNk' class="form-control">"
+                    <option value='0'>--Tip--</option> .
+                    <?php $tipovi_nk = getAllData($pdo, 'tip_nekretnine');
+                    foreach ($tipovi_nk as $tip_nk) {
+                        if ($tip_nk['id_tip_nekretnine'] == $idNk) {
+                            echo "<option selected value='" . $tip_nk['id_tip_nekretnine'] . "'>" . $tip_nk['tip_nekretnine'] . "</option>";
+                        } else {
+                            echo "<option value='" . $tip_nk['id_tip_nekretnine'] . "'>" . $tip_nk['tip_nekretnine'] . "</option>";
                         }
                     } ?>
                 </select>
